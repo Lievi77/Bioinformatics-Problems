@@ -68,7 +68,7 @@ def build_dna_string(info):
 #-----------------------------MAIN--------------------------------
 
 #usual algorithm
-file = open("rosalind_revp.txt","r")
+file = open("test.txt","r")
 
 #data is in FASTA FORMAT
 dna_info = file.readlines()
