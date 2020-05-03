@@ -75,4 +75,15 @@ def complement_dna_string(dna): #returns the complemented version of var dna
             c_dna_string += 'C'
 
     return c_dna_string 
+
+
+#method 3: getting a list of only the dna strings.
+def get_dna_strings(dna_map):
+    
+    dna_strings = []
+    
+    for dna in dna_map.values():
+        dna_strings.append(dna)
+    
+    return dna_strings
     
