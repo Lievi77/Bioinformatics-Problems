@@ -58,12 +58,12 @@ def decode(string, rules_map): #decodes the string using rules. WORKS WELL
 def largest_common_substring(dna_list): 
     
     #we will use a suffix array approach
-    #since our input can be up tp 100 dna strands
+    #since our input can be up to 100 dna strands
     #dynamic programming can quickly get out of hand
     
     #first step, concatenate the strings and use unique sentinels
     #map alphabet to natural numbers
-    #shift up for the number of sentinel characters you need
+    #shift up for the number of sentinel characters you need (100 in this case)
     
     big_dna = ""
     alphabet_map = {} #order does not matter { mapped_value : CHAR ITS referring to }
@@ -95,8 +95,8 @@ def largest_common_substring(dna_list):
         
     #next, build a suffix array
     suffix_array = build_sa(big_dna) #call to build the suffix array
-    print(suffix_array)
-    print(decode(big_dna,alphabet_map))
+    print("suffix_array: " + str(suffix_array))
+    
     
     #after successful build now get the common substring
     
@@ -104,20 +104,20 @@ def largest_common_substring(dna_list):
     
     #then just print
     
-    print(lcsm)
+    print("lcsm: " + str(lcsm))
     
             
     
 #-------------------------------MAIN-----------------------------------------
 
 def main():
-    dna_map = cm.process_dna_file(open("test.txt","r")) #ORDERED DICTIONARY
+    dna_map = cm.process_dna_file(open("rosalind_lcsm.txt","r")) #ORDERED DICTIONARY
     
     dna_list = cm.get_dna_strings(dna_map)
     
     output = largest_common_substring(dna_list)
     
-    print(output)
+    print("output: " + str(output))
     
     
     
