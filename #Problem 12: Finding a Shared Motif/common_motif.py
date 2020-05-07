@@ -1,4 +1,6 @@
 import common_methods as cm
+import math as ma
+
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -11,19 +13,26 @@ Created on Sun May  3 13:31:32 2020
 """
 #------------------------------METHODS-----------------------------------------
 
-def find_lcsm(suffix):
+def find_lcsm(suffix, dna_list, dna_code):
     #algorithm to find the largest common substring ussing a suffix array
+    
+    #we will use the sliding window algorithm approach
 
     pass
 
 def radix_sort(a):
     #radix sort implementation
+    #a has letters instead of integers
     
-    pass
+    #note that sentinel values (in this implementation ASCII [33, 132]) 
+    # have the highest precedance. sentinel< a< b< c <...
+    
+    
+    
+    return a
 
 
 def build_sa(string): #build the suffix arrays. 
-    #NOTE that a special character (ASCII 32-132) will always be of index 0    
 
     #we will use the Skew Algorithm to construct the suffix array
     
@@ -33,8 +42,44 @@ def build_sa(string): #build the suffix arrays.
     #2: (index  mod 3 = 1)
     #3: (index mod 3 = 2)
     
-    #then we will handle recursively (index mod 3 = 1) and (index mod 3 = 2)
+    #then we will handle recursively (index mod 3 = 1) and (index mod 3 = 2) groups
     #merge (index mod 3 = 0) group at the very end
+    
+    ########################################################################
+
+    #first we need to pad the string so it has (len mod 3 =0)
+    while( not ma.remainder(len(string), 3) == 0 ):
+        string += "&"
+    
+    print(string, len(string))
+    #then we loop to generate the groups
+    
+    suffix_map0 = {}
+    array0 = []
+    suffix_map12 = {}
+    array12 = []
+    
+    for i in range(len(string)):
+    
+        if int(ma.remainder(i,3)) == 0  :
+            
+            triple = string[i:i+3]
+            suffix_map0[ triple ] = i
+            array0.append(triple)
+            
+        else:
+            
+            triple = string[i:i+3]
+            suffix_map12[triple]  = i
+            array12.append(triple)
+            
+    
+    #now use radix sort to sort array12 
+    
+    array12 = radix_sort(array12) 
+    
+    #print("radix sort aftermath: " + str(array12))
+    
     
     pass
 
@@ -100,18 +145,20 @@ def largest_common_substring(dna_list):
     
     #after successful build now get the common substring
     
-    lcsm = find_lcsm(suffix_array)
+    lcsm = find_lcsm(suffix_array, dna_list, alphabet_map)
     
     #then just print
     
-    print("lcsm: " + str(lcsm))
+    
+    
+    #print("lcsm: " + decode(lcsm,alphabet_map))
     
             
     
 #-------------------------------MAIN-----------------------------------------
 
 def main():
-    dna_map = cm.process_dna_file(open("rosalind_lcsm.txt","r")) #ORDERED DICTIONARY
+    dna_map = cm.process_dna_file(open("test.txt","r")) #ORDERED DICTIONARY
     
     dna_list = cm.get_dna_strings(dna_map)
     
