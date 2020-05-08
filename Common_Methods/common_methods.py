@@ -86,4 +86,92 @@ def get_dna_strings(dna_map):
         dna_strings.append(dna)
     
     return dna_strings
+
+#method 4 translating from rna to protein (nucleotide)
+
+def rna_to_protein(rna_string):
+    protein = ""
+    
+    for i in range(0, len(rna_string), 3):
+        codon = rna_string[i: i+3]
+        
+        tiebreaker = codon[-1]
+        
+        codon = codon[:2]
+        
+        if codon == "GG":
+            protein += "G"
+        elif codon == "GC":
+            protein += "A"
+        elif codon == "GU":
+            protein += "V"
+        elif codon == "AC":
+            protein += "T"
+        elif codon == "CG":
+            protein += "R"
+        elif codon == "CC":
+            protein += "P"
+        elif codon == "CU":
+            protein += "L"
+        elif codon == "UC": #done with unique 2 letter identifiers
+            protein += "S"
+        else:#protein must belong to the proteins that have a tiebreaker
+        
+            if codon == "UU":
+                if tiebreaker == "U" or tiebreaker == "C":
+                    protein += "F"
+                else:
+                    protein += "L"
+            elif codon == "UA":
+                if tiebreaker == "U" or tiebreaker == "C":
+                    protein += "Y"
+           
+            elif codon == "UG":
+                if tiebreaker == "U" or tiebreaker == "C":
+                    protein += "C"
+                elif tiebreaker == "G":
+                    protein += "W"
+            
+            elif codon == "CA":
+                if tiebreaker == "U" or tiebreaker == "C":
+                    protein += "H"
+                else:
+                    protein += "Q"
+            elif codon == "AU":
+                if tiebreaker == "U" or tiebreaker == "C" or tiebreaker == "A":
+                    protein += "I"
+                else:
+                    protein += "M"
+            elif codon == "AA":
+                if tiebreaker == "U" or tiebreaker == "C":
+                    protein += "N"
+                else:
+                    protein += "K"
+            elif codon == "AG":
+                if tiebreaker == "U" or tiebreaker == "C":
+                    protein += "S"
+                else:
+                    protein += "R"
+            elif codon == "GA":
+                if tiebreaker == "U" or tiebreaker == "C":
+                    protein += "D"
+                else:
+                    protein += "E"
+    return protein
+    
+#method 5 translating a dna string to rna
+
+def dna_to_rna(dna):
+    rna = ""
+    
+    for char in dna:
+        
+        if char == "T":
+            rna += 'U'
+        else:
+            rna+= char
+        
+    
+    return rna
+
     
