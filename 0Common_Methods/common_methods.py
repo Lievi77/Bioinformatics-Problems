@@ -157,6 +157,8 @@ def rna_to_protein(rna_string):
                     protein += "D"
                 else:
                     protein += "E"
+            else:
+                protein += "/" #special character "/" represents the stop protein
     return protein
     
 #method 5 translating a dna string to rna
@@ -174,4 +176,3 @@ def dna_to_rna(dna):
     
     return rna
 
-    
