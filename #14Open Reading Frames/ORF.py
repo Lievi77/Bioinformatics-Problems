@@ -1,4 +1,5 @@
 import common_methods as cm 
+import math 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -10,21 +11,51 @@ Created on Fri May  8 12:25:44 2020
 """
 
 #---------------------------------METHODS-------------------------------------
-def get_stop_codon_index(rna, starting_index):
-    pass
+def get_arrangements(rna_string):
+    arrangements = [rna_string]
+    
+    length = int( math.remainder(len(rna_string), 3) )
+    
+   
+    
+    for i in range(length):
+        sub = rna_string[i:]
+        arrangements.append(sub)
+    
+    
+    return arrangements
 
+
+def get_stop_codon_index(rna, start_index, isrevc):
+    
+    i = start_index
+    
+    while i < len(rna):
+        
+        codon = rna[i:i+3]
+        
+        if isrevc:
+            codon = codon[::-1]
+            codon = cm.complement_rna(codon)
+        
+        
+        if codon == 'UAG' or codon == 'UGA' or codon == 'UAA':
+            break
+        
+        
+        i+= 3
+    
+    if i >= len(rna):
+        i = -1
+    
+    
+    return i 
 
 def get_open_reading_frames(dna_strand):
     
     candidates = []
     
-    start_codon = "AUG"
-    
-    stop_codon1 = "UAG"
-    
-    stop_codon2 = "UGA"
-    
-    stop_codon3 = "UAA"
+    start_codon  = 'AUG'
     
     #six total posibilities 
     #3 from normal rna start codon AUG with stop codon UAG UGA UAA
@@ -32,44 +63,23 @@ def get_open_reading_frames(dna_strand):
     
     #first get the dna translated to rna 
     rna = cm.dna_to_rna(dna_strand)
+    
     #then also get the reverse complement 
-    revc_rna = cm.dna_to_rna( cm.complement_dna_string(dna_strand[::-1]) )
     
-    #then just detect the start and ending codons
-    #we can scan both with only 1 loop
     
-    for i in range(len(dna_strand) - 6):
-        codon = rna[i: i+3 ]
-        anti_codon = revc_rna[i : i +3]
+    revc_rna = cm.complement_rna( rna[::-1] )
+    
+    #need to consider ALL Translations EX: AUGCUGAC -> AUGCUG, UGCUGA, GCUGAC
+    
+    
+    
         
         
-        if codon == start_codon: #fix indexing problem
-            j = i + 3 #start searching outside the start codon
-            stop_codon = ""
-            while j <= len(dna_strand):
-                codon2 = rna[j : j + 3]
                 
-                if codon2 == stop_codon1 or codon2 == stop_codon2 or codon == stop_codon3:
-                    stop_codon = codon2
-                    stop_codon_index = j
-                    
-                    
                 
-                j+=1
-            
-            candidate = rna[i: stop_codon_index  ]
-            print(candidate)
-            candidates.append(candidate)
-            
-            print(codon, stop_codon)
-            
-            
-            
-        
-    for i in range(len(candidates)): #translating rna to protein 
-        candidates[i] = cm.rna_to_protein(candidates[i])        
     
     return candidates
+    
 
 
 
@@ -82,8 +92,10 @@ def main():
     
     candidates = get_open_reading_frames(dna_strands[0]) # return a list contaning all dna substrings valid for translation
     
+    
     for candidate in candidates:
-        print(candidate)
+        print(cm.rna_to_protein(candidate))
+
 
 main() #execute the main routine
 

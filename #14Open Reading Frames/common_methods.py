@@ -125,12 +125,16 @@ def rna_to_protein(rna_string):
             elif codon == "UA":
                 if tiebreaker == "U" or tiebreaker == "C":
                     protein += "Y"
+                else:
+                    protein += "/"
            
             elif codon == "UG":
                 if tiebreaker == "U" or tiebreaker == "C":
                     protein += "C"
                 elif tiebreaker == "G":
                     protein += "W"
+                else:
+                    protein += "/"
             
             elif codon == "CA":
                 if tiebreaker == "U" or tiebreaker == "C":
@@ -157,6 +161,7 @@ def rna_to_protein(rna_string):
                     protein += "D"
                 else:
                     protein += "E"
+            
     return protein
     
 #method 5 translating a dna string to rna
@@ -173,4 +178,28 @@ def dna_to_rna(dna):
         
     
     return rna
+
+#methods 6 complementing an rna string 
+def complement_rna(rna):
+    c_rna_string = ""
+    
+    for nucleotide in rna:
+        
+        if nucleotide == 'A':
+            
+            c_rna_string += 'U'
+            
+        elif nucleotide == 'C':
+            
+            c_rna_string += 'G'
+            
+        elif nucleotide == 'U':
+        
+            c_rna_string += 'A'
+            
+        else:
+            
+            c_rna_string += 'C'
+    
+    return c_rna_string
 
