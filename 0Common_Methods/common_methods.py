@@ -1,4 +1,5 @@
-from collections import OrderedDict #changed implementation to ordered dictionary
+# changed implementation to ordered dictionary
+from collections import OrderedDict
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -10,7 +11,9 @@ Created on Sat May  2 10:46:47 2020
 @author: lev
 """
 
-#method 1: process dna information in FASTA format
+# ----------------------Section 1: String Algorithms--------------------------------------------
+
+# method 1: process dna information in FASTA format
 #
 # FASTA FORMAT:
 #
@@ -18,87 +21,89 @@ Created on Sat May  2 10:46:47 2020
 # DNA_STRING
 # STRING MAY OCCUPY MORE THAN 1 LINE
 
-#WORKS WELL 
-def process_dna_file(file): #returns the Ordered map {dna_name : dna_string}
+# WORKS WELL
+
+
+def process_dna_file(file):  # returns the Ordered map {dna_name : dna_string}
     file_lines = file.readlines()
     dna_string = ""
     dna_name = ""
     dna_map = OrderedDict()
-    
-    
-    for i in range(len(file_lines)): #list form
-        
-        if i == 0: #first case, always a name
-            dna_name = file_lines[i][1:].strip('\n') #removes '>'
+
+    for i in range(len(file_lines)):  # list form
+
+        if i == 0:  # first case, always a name
+            dna_name = file_lines[i][1:].strip('\n')  # removes '>'
             continue
-    
-        if file_lines[i][0] == ">": 
+
+        if file_lines[i][0] == ">":
             dna_map[dna_name] = dna_string
-            dna_string = "" #clear string
-            dna_name = file_lines[i][1:].strip('\n') #update name reference
+            dna_string = ""  # clear string
+            dna_name = file_lines[i][1:].strip('\n')  # update name reference
             continue
-    
-        
+
         dna_string += file_lines[i].strip("\n")
-        
-        if i == len(file_lines) -1: #last case check
+
+        if i == len(file_lines) - 1:  # last case check
             dna_map[dna_name] = dna_string
-    
+
     return dna_map
 
-#method 2: complementing a dna string 
+# method 2: complementing a dna string
 
-#nucleotides complement the following way:
+# nucleotides complement the following way:
 # A <-> T
 # C <-> G
 
-def complement_dna_string(dna): #returns the complemented version of var dna
 
-    c_dna_string = ''    
+def complement_dna_string(dna):  # returns the complemented version of var dna
+
+    c_dna_string = ''
 
     for nucleotide in dna:
-        
+
         if nucleotide == 'A':
-            
+
             c_dna_string += 'T'
-            
+
         elif nucleotide == 'C':
-            
+
             c_dna_string += 'G'
-            
+
         elif nucleotide == 'T':
-        
+
             c_dna_string += 'A'
-            
+
         else:
-            
+
             c_dna_string += 'C'
 
-    return c_dna_string 
+    return c_dna_string
 
 
-#method 3: getting a list of only the dna strings.
+# method 3: getting a list of only the dna strings.
 def get_dna_strings(dna_map):
-    
+
     dna_strings = []
-    
+
     for dna in dna_map.values():
         dna_strings.append(dna)
-    
+
     return dna_strings
 
-#method 4 translating from rna to protein (nucleotide)
+# method 4 translating from rna to protein (nucleotide)
+
 
 def rna_to_protein(rna_string):
     protein = ""
-    
+
     for i in range(0, len(rna_string), 3):
         codon = rna_string[i: i+3]
-        
+
         tiebreaker = codon[-1]
-        
+
         codon = codon[:2]
-        
+
         if codon == "GG":
             protein += "G"
         elif codon == "GC":
@@ -113,10 +118,10 @@ def rna_to_protein(rna_string):
             protein += "P"
         elif codon == "CU":
             protein += "L"
-        elif codon == "UC": #done with unique 2 letter identifiers
+        elif codon == "UC":  # done with unique 2 letter identifiers
             protein += "S"
-        else:#protein must belong to the proteins that have a tiebreaker
-        
+        else:  # protein must belong to the proteins that have a tiebreaker
+
             if codon == "UU":
                 if tiebreaker == "U" or tiebreaker == "C":
                     protein += "F"
@@ -127,7 +132,7 @@ def rna_to_protein(rna_string):
                     protein += "Y"
                 else:
                     protein += "/"
-           
+
             elif codon == "UG":
                 if tiebreaker == "U" or tiebreaker == "C":
                     protein += "C"
@@ -135,7 +140,7 @@ def rna_to_protein(rna_string):
                     protein += "W"
                 else:
                     protein += "/"
-            
+
             elif codon == "CA":
                 if tiebreaker == "U" or tiebreaker == "C":
                     protein += "H"
@@ -161,45 +166,59 @@ def rna_to_protein(rna_string):
                     protein += "D"
                 else:
                     protein += "E"
-            
+
     return protein
-    
-#method 5 translating a dna string to rna
+
+# method 5 translating a dna string to rna
+
 
 def dna_to_rna(dna):
     rna = ""
-    
+
     for char in dna:
-        
+
         if char == "T":
             rna += 'U'
         else:
-            rna+= char
-        
-    
+            rna += char
+
     return rna
 
-#methods 6 complementing an rna string 
+# methods 6 complementing an rna string
+
+
 def complement_rna(rna):
     c_rna_string = ""
-    
+
     for nucleotide in rna:
-        
+
         if nucleotide == 'A':
-            
+
             c_rna_string += 'U'
-            
+
         elif nucleotide == 'C':
-            
+
             c_rna_string += 'G'
-            
+
         elif nucleotide == 'U':
-        
+
             c_rna_string += 'A'
-            
+
         else:
-            
+
             c_rna_string += 'C'
-    
+
     return c_rna_string
 
+
+# ----------------------SECTION 2: Probability-related Problems-------------------------------------------
+
+def read_population_input(file):
+
+    population = []
+
+    for line in file:
+
+        population = line.split()
+
+    return population  # returns an array containing the population integers
