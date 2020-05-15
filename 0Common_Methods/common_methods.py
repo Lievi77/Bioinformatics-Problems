@@ -21,8 +21,6 @@ Created on Sat May  2 10:46:47 2020
 # DNA_STRING
 # STRING MAY OCCUPY MORE THAN 1 LINE
 
-# WORKS WELL
-
 
 def process_dna_file(file):  # returns the Ordered map {dna_name : dna_string}
     file_lines = file.readlines()
@@ -184,34 +182,37 @@ def dna_to_rna(dna):
 
     return rna
 
-# methods 6 complementing an rna string
+# method 6: translate an rna string to dna
 
 
-def complement_rna(rna):
-    c_rna_string = ""
+def rna_to_dna(rna):
+    dna = ""
 
-    for nucleotide in rna:
+    for char in dna:
+        if char == "U":
+            dna += 'T'
+    else:
+        dna += char
 
-        if nucleotide == 'A':
-
-            c_rna_string += 'U'
-
-        elif nucleotide == 'C':
-
-            c_rna_string += 'G'
-
-        elif nucleotide == 'U':
-
-            c_rna_string += 'A'
-
-        else:
-
-            c_rna_string += 'C'
-
-    return c_rna_string
+    return dna
 
 
-# ----------------------SECTION 2: Probability-related Problems-------------------------------------------
+# methods 7 complementing an rna string
+def complement_rna_string(rna):
+    # roadmap:
+    # rna -> dna -> complement dna -> rna
+    return dna_to_rna(complement_dna_string(rna_to_dna(rna)))
+
+# method 8 dna to protein
+
+
+def dna_to_protein(dna):
+    # roadmap:
+    # dna -> rna -> protein
+    return rna_to_protein(dna_to_rna(dna))
+
+    # ----------------------SECTION 2: Probability-related Problems-------------------------------------------
+
 
 def read_population_input(file):
 
