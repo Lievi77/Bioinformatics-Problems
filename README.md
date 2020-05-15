@@ -11,7 +11,7 @@ Personal solutions to the ROSALIND free bioinformatics problem database using Py
 
 - Finish **only** problems 12 and 14.
 
-- Review all the solutions up to problem 15. Optimize and standarize the format.
+- Review all the solutions up to problem 15 (while reviewing, also do some biology notes) . Optimize and standarize thefile format.
 
 - Start redoing the problems in C.
 
