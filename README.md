@@ -1,6 +1,6 @@
 # Bioinformatics Problems Solutions
 
-Personal solutions to the ROSALIND free bioinformatics problem database using solely python and its scientific packages.
+Personal solutions to the ROSALIND free bioinformatics problem database using python and C.
 
 ### Notes:
 
