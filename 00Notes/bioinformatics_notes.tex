@@ -23,14 +23,29 @@
 	top=20mm,
 }
 
+%Glossary definition and hyperref 
+\usepackage{hyperref}
+\usepackage{glossaries}
+\makeglossaries
+
+\newglossaryentry{heterozygous}
+{
+	name={heterozygous},
+	description={description}
+}
+
+
+%title page definition
 \setlength\parindent{0pt}
 
 \title{Bioinformatics Notes and Terminology}
 \author{Lev Cesar Guzman Aparicio \\ \texttt{lguzm038@uottawa.ca}}
 
+%actual document begins
 \begin{document}
 \maketitle
 
+%first section will concentrate on molecular biology
 \section{Molecular Biology}
 
 \subsection{DNA}
@@ -39,6 +54,7 @@
 
 \subsubsection{mRNA}
 
+%second section will focus on heredity and probability
 \section{Genetics/Heredity}
 
 \subsection{Mendel's First Law of Inheritance}
@@ -53,12 +69,22 @@ A \textbf{Punnet Square} is a graphical way to deduce all possible combinations 
 
 \subsection{Mendel's Second Law of Inheritance}
 
-While Mendel's first law described the behavior among alleles that affect a single phenotype; Mendel's second law describes the relationships among alleles that affect different characteristics.  
+While Mendel's first law described the behavior among alleles that affect a single phenotype; Mendel's second law describes the relationships among alleles that affect different characteristics. \\
 
+\textsl{\textbf{Factors (gene) for different characteristics are inherited with no dependence on each other.}} \\
+
+The previous statement came to be known as \textbf{Mendel's Second Law} or \textbf{Law of Independent Assortment}
+
+
+%some extra notes on algorithms
 \section{Data Structures and Algorithms Used}
 
 \subsection{Suffix Tree/Array}
 
 \subsection{Skew Algorithm}
+
+%the glossary
+\printglossaries
+
 
 \end{document}
