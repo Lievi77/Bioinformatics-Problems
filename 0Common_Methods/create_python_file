@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#the prefix "!/" tells bash that this file is an executable
+
+echo "Hello, World!"
