@@ -1,9 +1,12 @@
 #!/bin/bash
+
+#Note that "!/" indicates this file is an executable script 
+
 #===============================================================================
 #
 #          FILE:  create_file.sh
 # 
-#         USAGE:  ./create_file.sh fileName  
+#         USAGE:  create_file.sh fileName  
 # 
 #   DESCRIPTION:  Bash script to create, for now, a personalized .py file
 # 
@@ -46,4 +49,9 @@ def main():
 main()
  
 EOF
+
+#now we will make the script move a copy of common_methods.py to the current folder using cp
+cp ~/Github/Bioinformatics-Problems/0Common_Methods/common_methods.py $PWD
+#NOTE: alter the first argument as needed 
+#$PWD refers to the current directory
 
