@@ -11,7 +11,7 @@
 #   DESCRIPTION:  Bash script to create, for now, a personalized .py file
 # 
 #       OPTIONS:  ---
-#  REQUIREMENTS:  Python 3.7
+#  REQUIREMENTS:  Python 3.7, PATH variable pointing to ~/bin 
 #          BUGS:  ---
 #         NOTES:  ---
 #        AUTHOR:   (Lev Cesar Guzman Aparicio), 
@@ -54,4 +54,8 @@ EOF
 cp ~/Github/Bioinformatics-Problems/0Common_Methods/common_methods.py $PWD
 #NOTE: alter the first argument as needed 
 #$PWD refers to the current directory
+
+
+#finally we will make it create a simple .txt file named "test.txt"
+touch test.txt
 
