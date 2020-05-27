@@ -211,8 +211,8 @@ def dna_to_protein(dna):
     # dna -> rna -> protein
     return rna_to_protein(dna_to_rna(dna))
 
-    # ----------------------SECTION 2: Probability-related Problems-------------------------------------------
 
+# ----------------------SECTION 2: Probability-related Problems-------------------------------------------
 
 def read_population_input(file):
 
@@ -223,3 +223,11 @@ def read_population_input(file):
         population = line.split()
 
     return population  # returns an array containing the population integers
+
+# -----------------------SECTION 3: MISCELLANEOUS METHODS-----------------------------------------------
+
+
+def print_list_elements(l):
+
+    for element in l:
+        print(element)

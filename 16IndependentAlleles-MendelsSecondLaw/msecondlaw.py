@@ -1,20 +1,27 @@
 import common_methods as cm
+'''
+ *******************************************************
+ * Author: Lev Cesar Guzman Aparicio		           *
+ * Email: lguzm038@uottawa.ca or lguzm77@gmail.com     *
+ * Problem #16 : Finding Independent Alleles           *
+ *      				                               *
+ *******************************************************
+'''
+# ---------------------METHODS----------------------------------------------------------------
 
 
-# -------------------Methods-------------------------
-# inputs is a list of integers
-def get_fam_tree_prob(inputs):
+def get_AaBb_probability(n):
     pass
 
 
-# -------------------Main-------------------------
+# ---------------------MAIN-------------------------------------------------------------------
+
 def main():
-    # usual algorithm
     file = open("test.txt", "r")
-    # remember that cm returns a list containg the inputs
     inputs = cm.read_population_input(file)
 
-    # return a double
-    odds = get_fam_tree_prob(inputs)
+    odds = get_AaBb_probability(inputs)
+    print(inputs)
 
-    print(odds)
+
+main()
