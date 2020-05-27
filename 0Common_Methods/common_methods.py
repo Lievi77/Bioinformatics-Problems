@@ -188,7 +188,7 @@ def dna_to_rna(dna):
 def rna_to_dna(rna):
     dna = ""
 
-    for char in dna:
+    for char in rna:
         if char == "U":
             dna += 'T'
     else:
