@@ -31,12 +31,14 @@ touch $1.py #retrieves the name of the file from the command line and creates a 
 cat <<EOF >$1.py
 import common_methods.py as cm
 
-#*******************************************************
-#* Author: Lev Cesar Guzman Aparicio		       *
-#* Email: lguzm038@uottawa.ca or lguzm77@gmail.com     *
-#* Problem #-- : ---------------------------------     *
-#*      				               *
-#*******************************************************
+'''
+*******************************************************
+* Author: Lev Cesar Guzman Aparicio		              *
+* Email: lguzm038@uottawa.ca or lguzm77@gmail.com     *
+* Problem #-- : ---------------------------------     *
+*      				                                  *
+*******************************************************
+'''
 
 #---------------------METHODS----------------------
 
