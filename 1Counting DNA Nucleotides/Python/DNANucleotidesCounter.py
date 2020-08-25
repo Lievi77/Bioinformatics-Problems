@@ -20,9 +20,9 @@ to_analyze = open("rosalind_dna.txt", "r")
 # read methods :
 # read(n), reads n bytes or if n is not specified, the entire file
 # readline(n), n is the number of bytes but only reads one line.
-# readlines(), reads line by line of the document and returns it in a list
+# readlines(), reads line by line of the document and returns it in list of all the lines of the text
 inputText = to_analyze.readlines()
-inputText = inputText[0]
+inputText = inputText[0] #since we only have 1 line of input, we get rid of the array
 
 # assuming there are only A, B, C, G, T
 # trying recursion
